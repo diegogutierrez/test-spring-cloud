@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta1
+kind: Config
+metadata:
+  name: test-spring-cloud
+build:
+  artifacts:
+  - image: test-spring-cloud
+    jib:
+      type: gradle
+deploy:
+  helm:
+    releases:
+    - name: test-spring-cloud
+      chartPath: helm/test-spring-cloud
+      valuesFiles:
+      - helm/test-spring-cloud/values.yaml
+      version: 0.1.0
